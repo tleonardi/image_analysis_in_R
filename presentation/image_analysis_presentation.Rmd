@@ -1,0 +1,160 @@
+% Image analysis in R
+% Tommaso Leonardi
+% tl344@ebi.ac.uk
+
+
+```{r setup, include=FALSE}
+# set global chunk options
+opts_chunk$set(fig.path='knit_figure/fig', cache.path='knit-cache/', cache=TRUE, warning=FALSE, message=FALSE, fig.cap="", results='asis')
+options("width"=200)
+library("tiff")
+library("EBImage")
+display = function(...) if (interactive()) EBImage::display(...)
+```
+
+# A couple of covenient packages for image manipulation in R
+1. EBImage
+```{r, results='hide', eval=FALSE}
+source("http://bioconductor.org/biocLite.R")
+biocLite("EBImage")
+```
+
+
+
+# The simplest image
+An image in R is just a matrix where 0 is black and 1 is white
+```{r, results="markup"}
+simple_image <- matrix(seq(0,1,by=0.2), nrow=6, ncol=6)
+simple_image
+```
+
+The _display_ function in EBImage makes it easy to visualise a matrix
+```{r}
+display(simple_image, method="raster")
+```
+
+# Loading external images
+Reading an image from a file is as easy as:
+```{r}
+queen <- readImage("HRH_ERII.tif")
+queen <- resize(queen, w=200, h=260)
+```
+
+```{r, results="markup"}
+queen
+writeImage(queen, 'img/queen_1.jpg', quality=85)
+```
+![](img/queen_1.jpg)
+
+
+
+# Modifying the brightness
+
+Adding a constant to every pixel increses the brightness
+```{r}
+newQueen <- queen + 0.2
+plot(as.numeric(queen), as.numeric(newQueen), pch=19, ylim=c(0,1), xlim=c(0,1))
+writeImage(newQueen, 'img/brightQueen.jpg', quality=85)
+```
+![Original](img/queen_1.jpg) ![Modified](img/brightQueen.jpg)
+
+
+# Modifying the contrast
+
+Multiplying a constant to every pixel increses the constrast
+```{r}
+newQueen <- queen * 2
+plot(as.numeric(queen), as.numeric(newQueen), pch=19, ylim=c(0,1), xlim=c(0,1))
+writeImage(newQueen, 'img/contrastQueen.jpg', quality=85)
+```
+![Original](img/queen_1.jpg) ![Modified](img/contrastQueen.jpg)
+
+
+
+# Modifying the gamma
+
+Exponentiating every pixel increses the gamma
+```{r}
+newQueen <- queen ^ 2
+plot(as.numeric(queen), as.numeric(newQueen), pch=19, ylim=c(0,1), xlim=c(0,1))
+writeImage(newQueen, 'img/gammaQueen.jpg', quality=85)
+```
+![Original](img/queen_1.jpg) ![Modified](img/gammaQueen.jpg)
+
+
+# Other operations on the matrix
+
+## Transposition
+```{r}
+newQueen <- t(queen)
+writeImage(newQueen, 'img/transQueen.jpg', quality=85)
+```
+![](img/transQueen.jpg)
+
+## Thresholding
+```{r}
+newQueen <- queen>0.5
+writeImage(newQueen, 'img/thrQueen.jpg', quality=85)
+```
+![](img/thrQueen.jpg)
+
+
+# Filtering
+Filtering allows to apply various effects to an image. In its simplest form, you center a filter matrix on each pixel of the image and you reset the value of the pixel to the sum of pixel-wise products between the image and the filter matrix.
+This is a filter matrix:
+```{r, results="markup"}
+filt = matrix(1, nc=5, nr=5)
+filt <- filt / sum(filt)
+filt
+```
+Now imagine to position the central pixel of this filter on one pixel of the image. Then you multiply one by one the pixels of the filter with the pixels of the image covered by the filter. The new value for the central pixel will be the sum of all these products. You then repeat the same procedure after positioning the filter on every pixel in the image.
+We divide the filter matrix by its sum so that the sum of the matrix is always 1 (if we didn't we would increase the overall intensity if the image).
+
+The function _filter2_ of EBImage does this procedure for us:
+```{r}
+newQueen <- filter2(queen, filt)
+writeImage(newQueen, 'img/lofiltQueen.jpg', quality=85)
+```
+![Original](img/queen_1.jpg) ![](img/lofiltQueen.jpg)
+
+
+
+# Sharpening
+Sharpening an image is the result of applying yet another filter on it.
+
+This is a filter matrix that would sharpen the image:
+```{r, results="markup"}
+filt = matrix(-1, nc=3, nr=3)
+filt[2,2] <- 9
+filt
+```
+The pixel intensity has a strong positive weight, while its neighbours have a small negative one. The sum of all pixels is 1, so that the overall intensity of the image doesn't change.
+
+```{r}
+newQueen <- filter2(queen, filt)
+writeImage(newQueen, 'img/sharpQueen.jpg', quality=85)
+```
+![Original](img/queen_1.jpg) ![](img/sharpQueen.jpg)
+
+
+
+# Can we use R to make something useful?
+Given an image of this type:
+```{r, hide=T}
+tif_files <- as.Image(readTIFF("astrocytes.tiff"))
+colorMode(tif_files) <- "color"
+nuc <- tif_files[,,1]
+cel <- tif_files[,,3]
+img = rgbImage(green=cel, blue=nuc)
+writeImage(resize(img, w=347, h=464), 'img/img.jpg', quality=86)
+```
+![](img/img.jpg)
+
+Can you tell me how many cells there are, what is the cell size distribution and what is the bistribution of signal intensities cell-by-cell?
+
+
+
+
+
+
+
