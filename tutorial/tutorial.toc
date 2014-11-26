@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}Loading an image}{1}{section.1}
+\contentsline {section}{\numberline {2}Segmenting nuclei}{1}{section.2}
+\contentsline {section}{\numberline {3}Segmenting the cell bodies}{4}{section.3}
+\contentsline {section}{\numberline {4}Computing features}{6}{section.4}

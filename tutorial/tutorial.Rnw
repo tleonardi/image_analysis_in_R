@@ -8,7 +8,7 @@
 \usepackage{url}
 \usepackage[unicode=true,pdfusetitle,
  bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
- breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false,hidelinks]
  {hyperref}
 \hypersetup{
  pdfstartview={XYZ null null 1}}
@@ -22,15 +22,12 @@ opts_chunk$set(fig.path='knit_figure/fig', cache.path='knit-cache/', fig.align='
 
 \title{Image analysis in R}
 \author{Tommaso Leonardi, tl344@ebi.ac.uk}
+\date{November 28th, 2014}
 \maketitle
-
-For this tutorial we are going to need some external libraries, which can be installed and loaded with:
-<<load-libs, eval=F>>=
-install.packages("tiff")
-install.packages("grid")
-install.packages("ggplot2")
-source("http://bioconductor.org/biocLite.R")
-biocLite("EBImage")
+\tableofcontents
+\section{Loading an image}
+For this tutorial we are going to need some external libraries, which can be loaded with:
+<<load-libs, echo=F, warning=F>>=
 library("EBImage")
 library("tiff")
 library("grid")

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 NOV 2013 18:32
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  26 NOV 2014 17:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -488,196 +488,154 @@ LaTeX Font Info:    Try loading font information for OT1+zplm on input line 74.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
-Package color Info: Redefining color shadecolor on input line 77.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 78.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 74.
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/t1cmtt.fd
+(./tutorial.toc
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 1.
+)
+\tf@toc=\write4
+\openout4 = `tutorial.toc'.
+
+Package color Info: Redefining color shadecolor on input line 81.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 82.
+ (/usr/local/texlive/2012/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 79.
-Package color Info: Redefining color shadecolor on input line 95.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 83.
 
+<knit_figure/figfull_image-1.pdf, id=24, 505.89pt x 505.89pt>
+File: knit_figure/figfull_image-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 104.
+<use knit_figure/figfull_image-1.pdf>
+Package pdftex.def Info: knit_figure/figfull_image-1.pdf used on input line 92.
 
-<knit_figure/figfull_image.pdf, id=16, 505.89pt x 505.89pt>
-File: knit_figure/figfull_image.pdf Graphic file (type pdf)
-
-<use knit_figure/figfull_image.pdf>
-Package pdftex.def Info: knit_figure/figfull_image.pdf used on input line 107.
 (pdftex.def)             Requested size: 472.03123pt x 472.03983pt.
-LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 125.
-Package color Info: Redefining color shadecolor on input line 127.
+Package color Info: Redefining color shadecolor on input line 111.
 
+<knit_figure/figdapi-1.pdf, id=26, 505.89pt x 505.89pt>
+File: knit_figure/figdapi-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 127.
-
-<knit_figure/figdapi.pdf, id=18, 505.89pt x 505.89pt>
-File: knit_figure/figdapi.pdf Graphic file (type pdf)
-
-<use knit_figure/figdapi.pdf>
-Package pdftex.def Info: knit_figure/figdapi.pdf used on input line 130.
+<use knit_figure/figdapi-1.pdf>
+Package pdftex.def Info: knit_figure/figdapi-1.pdf used on input line 113.
 (pdftex.def)             Requested size: 200.75073pt x 200.75452pt.
-Package color Info: Redefining color shadecolor on input line 143.
+Package color Info: Redefining color shadecolor on input line 125.
 
+<knit_figure/figsimp_thr-1.pdf, id=28, 505.89pt x 505.89pt>
+File: knit_figure/figsimp_thr-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 147.
-
-<knit_figure/figsimp_thr.pdf, id=20, 505.89pt x 505.89pt>
-File: knit_figure/figsimp_thr.pdf Graphic file (type pdf)
-
-<use knit_figure/figsimp_thr.pdf>
-Package pdftex.def Info: knit_figure/figsimp_thr.pdf used on input line 150.
+<use knit_figure/figsimp_thr-1.pdf>
+Package pdftex.def Info: knit_figure/figsimp_thr-1.pdf used on input line 131.
 (pdftex.def)             Requested size: 200.75073pt x 200.75452pt.
-Package color Info: Redefining color shadecolor on input line 164.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 169.
-
-<knit_figure/figthr.pdf, id=22, 505.89pt x 505.89pt>
-File: knit_figure/figthr.pdf Graphic file (type pdf)
-
-<use knit_figure/figthr.pdf>
-Package pdftex.def Info: knit_figure/figthr.pdf used on input line 172.
-(pdftex.def)             Requested size: 200.75073pt x 200.75452pt.
-Package color Info: Redefining color shadecolor on input line 186.
+Package color Info: Redefining color shadecolor on input line 144.
  [1
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./k
-nit_figure/figfull_image.pdf>] [3 <./knit_figure/figdapi.pdf> <./knit_figure/fi
-gsimp_thr.pdf>]
+nit_figure/figfull_image-1.pdf>] [3 <./knit_figure/figdapi-1.pdf> <./knit_figur
+e/figsimp_thr-1.pdf>]
+<knit_figure/figthr-1.pdf, id=65, 505.89pt x 505.89pt>
+File: knit_figure/figthr-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 193.
-
-<knit_figure/figopening.pdf, id=58, 505.89pt x 505.89pt>
-File: knit_figure/figopening.pdf Graphic file (type pdf)
-
-<use knit_figure/figopening.pdf>
-Package pdftex.def Info: knit_figure/figopening.pdf used on input line 196.
+<use knit_figure/figthr-1.pdf>
+Package pdftex.def Info: knit_figure/figthr-1.pdf used on input line 151.
 (pdftex.def)             Requested size: 200.75073pt x 200.75452pt.
-Package color Info: Redefining color shadecolor on input line 213.
+Package color Info: Redefining color shadecolor on input line 164.
 
+<knit_figure/figopening-1.pdf, id=67, 505.89pt x 505.89pt>
+File: knit_figure/figopening-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 220.
+<use knit_figure/figopening-1.pdf>
+Package pdftex.def Info: knit_figure/figopening-1.pdf used on input line 173.
+(pdftex.def)             Requested size: 200.75073pt x 200.75452pt.
+Package color Info: Redefining color shadecolor on input line 189.
 
-<knit_figure/fignucgray.pdf, id=61, 505.89pt x 505.89pt>
-File: knit_figure/fignucgray.pdf Graphic file (type pdf)
+<knit_figure/fignucgray-1.pdf, id=70, 505.89pt x 505.89pt>
+File: knit_figure/fignucgray-1.pdf Graphic file (type pdf)
 
-<use knit_figure/fignucgray.pdf>
-Package pdftex.def Info: knit_figure/fignucgray.pdf used on input line 223.
+<use knit_figure/fignucgray-1.pdf>
+Package pdftex.def Info: knit_figure/fignucgray-1.pdf used on input line 198.
 (pdftex.def)             Requested size: 301.1261pt x 301.12793pt.
-Package color Info: Redefining color shadecolor on input line 237.
-Package color Info: Redefining color shadecolor on input line 246.
- [4 <./knit_figure/figthr.pdf>] [5 <./knit_figure/figopening.pdf> <./knit_figur
-e/fignucgray.pdf>]
+Package color Info: Redefining color shadecolor on input line 211.
+Package color Info: Redefining color shadecolor on input line 219.
+ [4 <./knit_figure/figthr-1.pdf>] [5 <./knit_figure/figopening-1.pdf> <./knit_f
+igure/fignucgray-1.pdf>]
+<knit_figure/figcmask-1.pdf, id=95, 505.89pt x 505.89pt>
+File: knit_figure/figcmask-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 252.
-
-<knit_figure/figcmask.pdf, id=87, 505.89pt x 505.89pt>
-File: knit_figure/figcmask.pdf Graphic file (type pdf)
-
-<use knit_figure/figcmask.pdf>
-Package pdftex.def Info: knit_figure/figcmask.pdf used on input line 255.
+<use knit_figure/figcmask-1.pdf>
+Package pdftex.def Info: knit_figure/figcmask-1.pdf used on input line 227.
 (pdftex.def)             Requested size: 200.75073pt x 200.75452pt.
-Package color Info: Redefining color shadecolor on input line 267.
+Package color Info: Redefining color shadecolor on input line 238.
 
+<knit_figure/figres-1.pdf, id=97, 505.89pt x 505.89pt>
+File: knit_figure/figres-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 274.
-
-<knit_figure/figres.pdf, id=89, 505.89pt x 505.89pt>
-File: knit_figure/figres.pdf Graphic file (type pdf)
-
-<use knit_figure/figres.pdf>
-Package pdftex.def Info: knit_figure/figres.pdf used on input line 277.
+<use knit_figure/figres-1.pdf>
+Package pdftex.def Info: knit_figure/figres-1.pdf used on input line 247.
 (pdftex.def)             Requested size: 401.50146pt x 401.50905pt.
-Package color Info: Redefining color shadecolor on input line 293.
- [6 <./knit_figure/figcmask.pdf>] [7 <./knit_figure/figres.pdf>]
-Package color Info: Redefining color shadecolor on input line 317.
+Package color Info: Redefining color shadecolor on input line 262.
+ [6 <./knit_figure/figcmask-1.pdf>] [7 <./knit_figure/figres-1.pdf>]
+Package color Info: Redefining color shadecolor on input line 285.
+ <knit_figure/figintens-1.pdf, id=120, 505.89pt x 505.89pt>
+File: knit_figure/figintens-1.pdf Graphic file (type pdf)
 
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 321.
-
-<knit_figure/figintens.pdf, id=111, 505.89pt x 505.89pt>
-File: knit_figure/figintens.pdf Graphic file (type pdf)
-
-<use knit_figure/figintens.pdf>
-Package pdftex.def Info: knit_figure/figintens.pdf used on input line 324.
+<use knit_figure/figintens-1.pdf>
+Package pdftex.def Info: knit_figure/figintens-1.pdf used on input line 291.
 (pdftex.def)             Requested size: 301.1261pt x 301.12793pt.
-Package color Info: Redefining color shadecolor on input line 337.
+Package color Info: Redefining color shadecolor on input line 303.
 
+<knit_figure/figarea-1.pdf, id=121, 505.89pt x 505.89pt>
+File: knit_figure/figarea-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 341.
-
-<knit_figure/figarea.pdf, id=112, 505.89pt x 505.89pt>
-File: knit_figure/figarea.pdf Graphic file (type pdf)
-
-<use knit_figure/figarea.pdf>
-Package pdftex.def Info: knit_figure/figarea.pdf used on input line 344.
+<use knit_figure/figarea-1.pdf>
+Package pdftex.def Info: knit_figure/figarea-1.pdf used on input line 309.
 (pdftex.def)             Requested size: 301.1261pt x 301.12793pt.
-Package color Info: Redefining color shadecolor on input line 356.
+Package color Info: Redefining color shadecolor on input line 320.
 
+<knit_figure/figscatter-1.pdf, id=122, 505.89pt x 505.89pt>
+File: knit_figure/figscatter-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 360.
-
-<knit_figure/figscatter.pdf, id=113, 505.89pt x 505.89pt>
-File: knit_figure/figscatter.pdf Graphic file (type pdf)
-
-<use knit_figure/figscatter.pdf>
-Package pdftex.def Info: knit_figure/figscatter.pdf used on input line 363.
+<use knit_figure/figscatter-1.pdf>
+Package pdftex.def Info: knit_figure/figscatter-1.pdf used on input line 326.
 (pdftex.def)             Requested size: 301.1261pt x 301.12793pt.
-Package color Info: Redefining color shadecolor on input line 376.
+Package color Info: Redefining color shadecolor on input line 338.
 
+<knit_figure/figpca-1.pdf, id=124, 505.89pt x 505.89pt>
+File: knit_figure/figpca-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 381.
-
-<knit_figure/figpca.pdf, id=115, 505.89pt x 505.89pt>
-File: knit_figure/figpca.pdf Graphic file (type pdf)
-
-<use knit_figure/figpca.pdf>
-Package pdftex.def Info: knit_figure/figpca.pdf used on input line 384.
+<use knit_figure/figpca-1.pdf>
+Package pdftex.def Info: knit_figure/figpca-1.pdf used on input line 345.
 (pdftex.def)             Requested size: 301.1261pt x 301.12793pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 395.
- [8 <./knit_figure/figintens.pdf>] [9 <./knit_figure/figarea.pdf>] [10 <./knit_
-figure/figscatter.pdf>] [11 <./knit_figure/figpca.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 395.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 355.
+ [8 <./knit_figure/figintens-1.pdf>] [9 <./knit_figure/figarea-1.pdf>] [10 <./k
+nit_figure/figscatter-1.pdf>] [11 <./knit_figure/figpca-1.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 355.
  (./tutorial.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 395.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 395.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 355.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 355.
 Package rerunfilecheck Info: File `tutorial.out' has not changed.
-(rerunfilecheck)             Checksum: 11CD363A431D6DA71B2D7ECD837806D1;485.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 395.
+(rerunfilecheck)             Checksum: 282D628F08B577D63518D787FFBAF8FF;626.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 355.
  ) 
 Here is how much of TeX's memory you used:
- 7765 strings out of 493488
- 111334 string characters out of 3141326
- 192090 words of memory out of 3000000
- 10928 multiletter control sequences out of 15000+200000
- 40597 words of font info for 78 fonts, out of 3000000 for 9000
+ 7775 strings out of 493488
+ 111554 string characters out of 3141326
+ 192091 words of memory out of 3000000
+ 10931 multiletter control sequences out of 15000+200000
+ 42904 words of font info for 81 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 31i,7n,35p,359b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
-exlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/tex
+ 31i,7n,35p,359b,376s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2012/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texli
 ve/2012/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2012
 /texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on tutorial.pdf (11 pages, 8909036 bytes).
+Output written on tutorial.pdf (11 pages, 8914850 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 130 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 189 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
