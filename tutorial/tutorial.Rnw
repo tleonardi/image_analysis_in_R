@@ -22,26 +22,26 @@ opts_chunk$set(fig.path='knit_figure/fig', cache.path='knit-cache/', fig.align='
 
 \title{Image analysis in R}
 \author{Tommaso Leonardi, tl344@ebi.ac.uk}
-\date{November 28th, 2014}
+\date{November 24th, 2016}
 \maketitle
 \tableofcontents
 \section{Loading an image}
 For this tutorial we are going to need some external libraries, which can be loaded with:
-<<load-libs, echo=F, warning=F>>=
+<<load-libs, echo=T, warning=F>>=
 library("EBImage")
 library("tiff")
-library("grid")
 library("ggplot2")
 @
 
 We can now load the image that we want to analyse:
 <<full.image, cache=TRUE, fig.cap="The starting image that we want to analyse">>=
 tif_files <- as.Image(readTIFF("astrocytes.tiff"))
-colorMode(tif_files) <- "color"
 nuc <- t(tif_files[,,1])
 cel <- t(tif_files[,,3])
+colorMode(nuc) <- "Grayscale"
+colorMode(cel) <- "Grayscale"
 img = rgbImage(green=cel, blue=nuc)
-grid.raster(img)
+display(img, method="raster")
 @
 The nuc object now contains the channel with the DAPI staining, while the cel object contains the channel with the Vimentin staining.
 The last two commands combine the two channels in a single RGB image and display it (Figure \ref{fig:full.image}). From this image, we want to determine:
@@ -53,20 +53,20 @@ The last two commands combine the two channels in a single RGB image and display
 
 \section{Segmenting nuclei}
 <<dapi, cache=TRUE, fig.cap="Object nuc (i.e., DAPI channel)", echo=FALSE, out.width="200px">>=
-grid.raster(nuc)
+display(nuc, method="raster")
 @
 The first step is to identify the nuclei based on the DAPI staining (Figure \ref{fig:dapi}).
 The simplest approach is to just apply a threshold on the image:
 <<simp.thr, cache=TRUE, fig.cap="Simple thresholding", echo=1, out.width="200px">>=
 nmask <- nuc > 0.3
-grid.raster(nmask)
+display(nmask, method="raster")
 @
 Which would generate a binary image as in Figure \ref{fig:simp.thr}.
 However, the EBImage package provides the thresh function, which is slightly more elaborate (type '?thresh' for more info) and gives better results.
 
 <<thr, cache=TRUE, fig.cap="Nuclei thresholded using the thresh() function in EBImage", out.width="200px">>=
 nmask = thresh(nuc, w=35, h=35, offset=0.15)
-grid.raster(nmask)
+display(nmask, method="raster")
 @
 The thresh function compares the image (nuc) to its filtered (smoothed) version. The w and h parameters in thresh() define the width and the height of the filtering window, while offset specifies the required difference in intensity between the original and filtered versions. The result is displayed in Figure \ref{fig:thr}.
 
@@ -75,7 +75,7 @@ The thresh function compares the image (nuc) to its filtered (smoothed) version.
 nmask = opening(nmask, makeBrush(15, shape="disc"))
 nmask = fillHull(nmask)
 nmask = bwlabel(nmask)
-grid.raster(nmask)
+display(nmask, method="raster")
 @
 The opening() function performs an erosion followed by a dilation\footnotemark[1] with a filter of size 15. As you can see in Figure \ref{fig:opening}, the effect if that we get rid of several small objects that are clearly noise.
 The last two lines perform to simple actions: fillHull fills the holes inside the segmented nuclei (i.e. sets to 1 all the 0s that are surrounded by 1s), while bwlabel assigns a label to each nucleus.
@@ -87,7 +87,7 @@ Finally, we can annotate the original image with the position of the segmented n
 colorMode(nmask) <- "Grayscale"
 nucgray = channel(nuc, "rgb")
 nucgray = paintObjects(nmask, nucgray, col="#ff00ff")
-grid.raster(nucgray)
+display(nucgray, method="raster")
 @
 
 \section{Segmenting the cell bodies}
@@ -99,19 +99,19 @@ And then using the propagate() function we determine the object boundaries in th
 <<cmask, cache=TRUE, fig.cap="Segmented cell bodies", out.width="200px">>=
 cmask = propagate(cel, seeds=nmask, mask=ctmask, lambda=1e-1)
 cmask = fillHull(cmask)
-grid.raster(cmask)
+display(cmask, method="raster")
 @
 Finally, we can combine our segmented nuclei and cell bodies in a single image (Figure \ref{fig:res}):
 <<res, cache=TRUE, fig.cap="Segmented cell bodies", out.width="400px">>=
 colorMode(cmask) <- "Grayscale"
 res = paintObjects(cmask, img, col="#FF0000")
 res = paintObjects(nmask, res, col="#ffff00") 
-grid.raster(res)
+display(res, method="raster")
 @
 
 \section{Computing features}
 Now that we know the boundaries of each cell we can easily calculate features such as cell size, mean signal intensity, etc...
-This is easily done using the computeFeatures() function in EBImage. This function comes in three flavours: one to calculate intensities, one to calculate shape and one to calculate moment (i.e. position related things)
+This is easily done using the computeFeatures() function in EBImage. This function comes in three flavours: one to calculate intensities, one to calculate shape and one to calculate moment (i.e. position related variables).
 Let's compute the features and combine the interesting ones in a single dataframe:
 <<features, cache=TRUE, results=TRUE, >>=
 basic <- computeFeatures.basic(cmask, cel)
@@ -124,16 +124,16 @@ head(all_features)
 The first column is the cell number, followed by the mean Vimentin intensity, the area of the cell, the length of the major axis (in pixels) and the eccentricity.
 It's now easy to play around with the data; Figure \ref{fig:intens}, \ref{fig:area} and \ref{fig:scatter} show the distribution of Vimentin intensity, the distribution of the areas of the cells and a scatterplot with the area plotted against the intensity.
 <<intens, cache=TRUE, fig.cap="Distribution of Vimentin intensity", out.width="300px">>=
-ggplot(all_features, aes(b.mean)) + geom_density()
+ggplot(all_features, aes(b.mean)) + geom_density() + xlab("Vimentin intensity") + theme_bw()
 @
 
 
 <<area, cache=TRUE, fig.cap="Distribution of areas", out.width="300px">>=
-ggplot(all_features, aes(s.area)) + geom_density()
+ggplot(all_features, aes(s.area)) + geom_density() + xlab("Cell area") + theme_bw()
 @
 
 <<scatter, cache=TRUE, fig.cap="The area of each cell is plotted against its mean intensity", out.width="300px">>=
-ggplot(all_features, aes(x=s.area, y=b.mean)) + geom_point()
+ggplot(all_features, aes(x=s.area, y=b.mean)) + geom_point() + xlab("Cell area") + ylab("Vimentin intensity") + theme_bw()
 @
 
 If we had two different populations of cells in the image, we might also be able to separate them using PCA as in Figure \ref{fig:pca}.

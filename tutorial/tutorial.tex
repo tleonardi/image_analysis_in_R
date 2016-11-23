@@ -21,6 +21,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 \usepackage{framed}
 \makeatletter
@@ -69,12 +70,20 @@
 
 \title{Image analysis in R}
 \author{Tommaso Leonardi, tl344@ebi.ac.uk}
-\date{November 28th, 2014}
+\date{November 24th, 2016}
 \maketitle
 \tableofcontents
 \section{Loading an image}
 For this tutorial we are going to need some external libraries, which can be loaded with:
-
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(}\hlstr{"EBImage"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"tiff"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"ggplot2"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 We can now load the image that we want to analyse:
 \begin{knitrout}
@@ -85,7 +94,7 @@ We can now load the image that we want to analyse:
 \hlstd{nuc} \hlkwb{<-} \hlkwd{t}\hlstd{(tif_files[,,}\hlnum{1}\hlstd{])}
 \hlstd{cel} \hlkwb{<-} \hlkwd{t}\hlstd{(tif_files[,,}\hlnum{3}\hlstd{])}
 \hlstd{img} \hlkwb{=} \hlkwd{rgbImage}\hlstd{(}\hlkwc{green}\hlstd{=cel,} \hlkwc{blue}\hlstd{=nuc)}
-\hlkwd{grid.raster}\hlstd{(img)}
+\hlkwd{display}\hlstd{(img,} \hlkwc{method}\hlstd{=}\hlstr{"raster"}\hlstd{)}
 \end{alltt}
 \end{kframe}\begin{figure}
 
@@ -93,7 +102,7 @@ We can now load the image that we want to analyse:
 
 }
 
-\caption[The starting image that we want to analyse]{The starting image that we want to analyse\label{fig:full.image}}
+\caption[The starting image that we want to analyse]{The starting image that we want to analyse}\label{fig:full.image}
 \end{figure}
 
 
@@ -114,7 +123,7 @@ The last two commands combine the two channels in a single RGB image and display
 
 }
 
-\caption[Object nuc (i]{Object nuc (i.e., DAPI channel)\label{fig:dapi}}
+\caption[Object nuc (i.e., DAPI channel)]{Object nuc (i.e., DAPI channel)}\label{fig:dapi}
 \end{figure}
 
 
@@ -132,7 +141,7 @@ The simplest approach is to just apply a threshold on the image:
 
 }
 
-\caption[Simple thresholding]{Simple thresholding\label{fig:simp.thr}}
+\caption[Simple thresholding]{Simple thresholding}\label{fig:simp.thr}
 \end{figure}
 
 
@@ -144,7 +153,7 @@ However, the EBImage package provides the thresh function, which is slightly mor
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{nmask} \hlkwb{=} \hlkwd{thresh}\hlstd{(nuc,} \hlkwc{w}\hlstd{=}\hlnum{35}\hlstd{,} \hlkwc{h}\hlstd{=}\hlnum{35}\hlstd{,} \hlkwc{offset}\hlstd{=}\hlnum{0.15}\hlstd{)}
-\hlkwd{grid.raster}\hlstd{(nmask)}
+\hlkwd{display}\hlstd{(nmask,} \hlkwc{method}\hlstd{=}\hlstr{"raster"}\hlstd{)}
 \end{alltt}
 \end{kframe}\begin{figure}
 
@@ -152,7 +161,7 @@ However, the EBImage package provides the thresh function, which is slightly mor
 
 }
 
-\caption[Nuclei thresholded using the thresh() function in EBImage]{Nuclei thresholded using the thresh() function in EBImage\label{fig:thr}}
+\caption[Nuclei thresholded using the thresh() function in EBImage]{Nuclei thresholded using the thresh() function in EBImage}\label{fig:thr}
 \end{figure}
 
 
@@ -166,7 +175,7 @@ The thresh function compares the image (nuc) to its filtered (smoothed) version.
 \hlstd{nmask} \hlkwb{=} \hlkwd{opening}\hlstd{(nmask,} \hlkwd{makeBrush}\hlstd{(}\hlnum{15}\hlstd{,} \hlkwc{shape}\hlstd{=}\hlstr{"disc"}\hlstd{))}
 \hlstd{nmask} \hlkwb{=} \hlkwd{fillHull}\hlstd{(nmask)}
 \hlstd{nmask} \hlkwb{=} \hlkwd{bwlabel}\hlstd{(nmask)}
-\hlkwd{grid.raster}\hlstd{(nmask)}
+\hlkwd{display}\hlstd{(nmask,} \hlkwc{method}\hlstd{=}\hlstr{"raster"}\hlstd{)}
 \end{alltt}
 \end{kframe}\begin{figure}
 
@@ -174,7 +183,7 @@ The thresh function compares the image (nuc) to its filtered (smoothed) version.
 
 }
 
-\caption[Segmented nuclei after opening() and fillHull()]{Segmented nuclei after opening() and fillHull()\label{fig:opening}}
+\caption[Segmented nuclei after opening() and fillHull()]{Segmented nuclei after opening() and fillHull()}\label{fig:opening}
 \end{figure}
 
 
@@ -191,7 +200,7 @@ Finally, we can annotate the original image with the position of the segmented n
 \hlkwd{colorMode}\hlstd{(nmask)} \hlkwb{<-} \hlstr{"Grayscale"}
 \hlstd{nucgray} \hlkwb{=} \hlkwd{channel}\hlstd{(nuc,} \hlstr{"rgb"}\hlstd{)}
 \hlstd{nucgray} \hlkwb{=} \hlkwd{paintObjects}\hlstd{(nmask, nucgray,} \hlkwc{col}\hlstd{=}\hlstr{"#ff00ff"}\hlstd{)}
-\hlkwd{grid.raster}\hlstd{(nucgray)}
+\hlkwd{display}\hlstd{(nucgray,} \hlkwc{method}\hlstd{=}\hlstr{"raster"}\hlstd{)}
 \end{alltt}
 \end{kframe}\begin{figure}
 
@@ -199,7 +208,7 @@ Finally, we can annotate the original image with the position of the segmented n
 
 }
 
-\caption[Final image showing segmented nuclei]{Final image showing segmented nuclei\label{fig:nucgray}}
+\caption[Final image showing segmented nuclei]{Final image showing segmented nuclei}\label{fig:nucgray}
 \end{figure}
 
 
@@ -220,7 +229,7 @@ And then using the propagate() function we determine the object boundaries in th
 \begin{alltt}
 \hlstd{cmask} \hlkwb{=} \hlkwd{propagate}\hlstd{(cel,} \hlkwc{seeds}\hlstd{=nmask,} \hlkwc{mask}\hlstd{=ctmask,} \hlkwc{lambda}\hlstd{=}\hlnum{1e-1}\hlstd{)}
 \hlstd{cmask} \hlkwb{=} \hlkwd{fillHull}\hlstd{(cmask)}
-\hlkwd{grid.raster}\hlstd{(cmask)}
+\hlkwd{display}\hlstd{(cmask,} \hlkwc{method}\hlstd{=}\hlstr{"raster"}\hlstd{)}
 \end{alltt}
 \end{kframe}\begin{figure}
 
@@ -228,7 +237,7 @@ And then using the propagate() function we determine the object boundaries in th
 
 }
 
-\caption[Segmented cell bodies]{Segmented cell bodies\label{fig:cmask}}
+\caption[Segmented cell bodies]{Segmented cell bodies}\label{fig:cmask}
 \end{figure}
 
 
@@ -240,7 +249,7 @@ Finally, we can combine our segmented nuclei and cell bodies in a single image (
 \hlkwd{colorMode}\hlstd{(cmask)} \hlkwb{<-} \hlstr{"Grayscale"}
 \hlstd{res} \hlkwb{=} \hlkwd{paintObjects}\hlstd{(cmask, img,} \hlkwc{col}\hlstd{=}\hlstr{"#FF0000"}\hlstd{)}
 \hlstd{res} \hlkwb{=} \hlkwd{paintObjects}\hlstd{(nmask, res,} \hlkwc{col}\hlstd{=}\hlstr{"#ffff00"}\hlstd{)}
-\hlkwd{grid.raster}\hlstd{(res)}
+\hlkwd{display}\hlstd{(res,} \hlkwc{method}\hlstd{=}\hlstr{"raster"}\hlstd{)}
 \end{alltt}
 \end{kframe}\begin{figure}
 
@@ -248,7 +257,7 @@ Finally, we can combine our segmented nuclei and cell bodies in a single image (
 
 }
 
-\caption[Segmented cell bodies]{Segmented cell bodies\label{fig:res}}
+\caption[Segmented cell bodies]{Segmented cell bodies}\label{fig:res}
 \end{figure}
 
 
@@ -292,7 +301,7 @@ It's now easy to play around with the data; Figure \ref{fig:intens}, \ref{fig:ar
 
 }
 
-\caption[Distribution of Vimentin intensity]{Distribution of Vimentin intensity\label{fig:intens}}
+\caption[Distribution of Vimentin intensity]{Distribution of Vimentin intensity}\label{fig:intens}
 \end{figure}
 
 
@@ -310,7 +319,7 @@ It's now easy to play around with the data; Figure \ref{fig:intens}, \ref{fig:ar
 
 }
 
-\caption[Distribution of areas]{Distribution of areas\label{fig:area}}
+\caption[Distribution of areas]{Distribution of areas}\label{fig:area}
 \end{figure}
 
 
@@ -327,7 +336,7 @@ It's now easy to play around with the data; Figure \ref{fig:intens}, \ref{fig:ar
 
 }
 
-\caption[The area of each cell is plotted against its mean intensity]{The area of each cell is plotted against its mean intensity\label{fig:scatter}}
+\caption[The area of each cell is plotted against its mean intensity]{The area of each cell is plotted against its mean intensity}\label{fig:scatter}
 \end{figure}
 
 
@@ -346,7 +355,7 @@ If we had two different populations of cells in the image, we might also be able
 
 }
 
-\caption[Biplot after Principal Component Analysis]{Biplot after Principal Component Analysis\label{fig:pca}}
+\caption[Biplot after Principal Component Analysis]{Biplot after Principal Component Analysis}\label{fig:pca}
 \end{figure}
 
 

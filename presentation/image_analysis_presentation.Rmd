@@ -75,7 +75,7 @@ writeImage(newQueen, 'img/contrastQueen.jpg', quality=85)
 
 Exponentiating every pixel increses the gamma
 ```{r}
-newQueen <- queen ^ 2
+newQueen <- queen ^ 0.2
 plot(as.numeric(queen), as.numeric(newQueen), pch=19, ylim=c(0,1), xlim=c(0,1))
 writeImage(newQueen, 'img/gammaQueen.jpg', quality=85)
 ```
